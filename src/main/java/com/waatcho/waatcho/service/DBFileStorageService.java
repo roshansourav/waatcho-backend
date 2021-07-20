@@ -4,10 +4,13 @@ import com.waatcho.waatcho.exception.MyFileNotFoundException;
 import com.waatcho.waatcho.model.DBFile;
 import com.waatcho.waatcho.repository.DBFileRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 import org.springframework.web.multipart.MultipartFile;
 import java.io.IOException;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class DBFileStorageService {
@@ -37,4 +40,11 @@ public class DBFileStorageService {
         return dbFileRepository.findById(fileId)
                 .orElseThrow(() -> new MyFileNotFoundException("File not found with id " + fileId));
     }
+
+    public List<String> getAllId(){
+        return dbFileRepository.findAll().stream()
+                .map(files -> files.getId())
+                .collect(Collectors.toList());
+    }
+
 }

@@ -61,5 +61,11 @@ public class FileController {
     }
 
 
+    @GetMapping("/getAllId")
+    public List<String> getAllId(){
+        return dbFileStorageService.getAllId();
+    }
+
+
 
 }
