@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 import org.springframework.web.multipart.MultipartFile;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -42,9 +43,8 @@ public class DBFileStorageService {
     }
 
     public List<String> getAllId(){
-        return dbFileRepository.findAll().stream()
-                .map(files -> files.getId())
-                .collect(Collectors.toList());
+            return dbFileRepository.getAllId();
+
     }
 
 }
